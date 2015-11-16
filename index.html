@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=640">
+
+    <link rel="stylesheet" href="stylesheets/core.css" media="screen">
+    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+
+    <script type="text/javascript" src="javascripts/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
+    <title>Cafeteria2.0 by izabely-furtado</title>
+  </head>
+
+  <body>
+    <a id="forkme_banner" href="https://github.com/izabely-furtado/Cafeteria2.0">View on GitHub</a>
+    <div class="shell">
+
+      <header>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>Cafeteria2.0</h1>
+            <h2>EX-StructuralPatterns - Cafeteria  “Black &amp; White”</h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+      </header>
+
+      <section id="downloads">
+        <span class="inner">
+          <a href="https://github.com/izabely-furtado/Cafeteria2.0/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/izabely-furtado/Cafeteria2.0/tarball/master" class="tgz"><em>download</em> .TGZ</a>
+        </span>
+      </section>
+
+
+      <span class="banner-fix"></span>
+
+
+      <section id="main_content">
+        <h3>
+<a id="diagrama-do-padrão-decorador" class="anchor" href="#diagrama-do-padr%C3%A3o-decorador" aria-hidden="true"><span class="octicon octicon-link"></span></a>Diagrama do Padrão Decorador</h3>
+
+<p>Queremos que, dado um objeto Cafe, seja possível adicionar funcionalidades a ele, e somente a ele, em tempo de execução. Vamos ver a arquitetura sugerida pelo padrão decorador com o diagrama que o representa:</p>
+
+<h3>
+<a id="explicação" class="anchor" href="#explica%C3%A7%C3%A3o" aria-hidden="true"><span class="octicon octicon-link"></span></a>Explicação</h3>
+
+<p>Certo, então todos os objetos possuem o mesmo tipo <strong>Cafe</strong>, esta classe define o que todos os objeto possuem e é igual a classe já feita antes. As classes de cafés concretas definem apenas os dados relativos a ela. </p>
+
+<p>Vejamos o construtor da classe abstrata<strong>FacricaCafe</strong> :</p>
+
+<blockquote>
+<pre><code>  FabricaCafe(float preco){
+    //setando o preço
+    this.setPreco(preco);
+    //colocando os ingredientes
+    this.agua = this.criarAgua();
+}
+</code></pre>
+</blockquote>
+
+<p>Para ter um  melhor parâmetro do que cada filho vai setar, segue como exemplo o construtor da classe <strong>FabricaCafeExpresso</strong> : </p>
+
+<blockquote>
+<pre><code>private FabricaCafeExpresso() {
+    super(2);
+    this.acucar = this.criarAcucar();
+    this.cafeSoluvel = this.criarCafeSoluvel();
+    this.leiteLiq = this.criarLeiteLiq();
+}
+</code></pre>
+</blockquote>
+
+<p>Já na classe abstrata do decorador temos o seguinte construtor:</p>
+
+<blockquote>
+<p>public CafeDecorator(FabricaCafe cafe, float preco) {
+        super(preco);
+        this.umCafe = cafe;
+        this.setPreco(this.getPreco() + this.umCafe.getPreco());</p>
+
+<pre><code>}
+</code></pre>
+</blockquote>
+
+<p>Assim em cada classe concreta de complemento tem-se que está vai ter passado como parâmetro um <strong>FabricaCafe</strong> e este estará contido no complemento. Já o preço, o preço do complemento em si é somado ao preço do café já escolhido.</p>
+
+<h3>
+<a id="motivação" class="anchor" href="#motiva%C3%A7%C3%A3o" aria-hidden="true"><span class="octicon octicon-link"></span></a>Motivação</h3>
+
+<ul>
+<li><p>Adiciona funcionalidades ao objeto em tempo de execução. 
+Note bem que, ao contrário da herança que aplica funcionalidades a todos os objetos dela, o padrão decorator permite aplicar funcionalidades apenas a um objeto específico.</p></li>
+<li><p>Possui uma flexibilidade maior que a herança estática. </p></li>
+<li><p>Aplica apenas as funcionalidades necessárias ao objeto nós evitamos o problema de classes sobrecarregadas, que possuem funcionalidade que nunca são utilizadas.</p></li>
+</ul>
+      </section>
+
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <p>this project by <a href="https://github.com/izabely-furtado">izabely-furtado</a> can be found on <a href="https://github.com/izabely-furtado/Cafeteria2.0">GitHub</a></p>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="https://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
+      </footer>
+
+    </div>
+
+    
+  </body>
+</html>

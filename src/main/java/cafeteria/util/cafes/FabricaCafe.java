@@ -5,6 +5,7 @@
  */
 package cafeteria.util.cafes;
 
+import cafeteria.cdp.Chocolate;
 import cafeteria.cdp.*;
 
 /**
@@ -36,7 +37,7 @@ public abstract class FabricaCafe implements FabricaIngredientes{
     
     
     //todo cafe tem agua
-    FabricaCafe(float preco){
+    public FabricaCafe(float preco){
         //setando o preço
         this.setPreco(preco);
         //colocando os ingredientes

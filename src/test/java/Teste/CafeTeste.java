@@ -7,8 +7,12 @@
 package Teste;
 
 import cafeteria.aplication.Cafeteria;
-import cafeteria.util.Builder.*;
 import cafeteria.util.FabricaPromocoes;
+import cafeteria.util.cafes.*;
+import cafeteria.util.cafes.decorator.Chantili;
+import cafeteria.util.cafes.decorator.Chocolate;
+import cafeteria.util.cafes.decorator.CremeLaranja;
+import cafeteria.util.cafes.decorator.Licor;
 import cafeteria.util.promocoes.FabricaPromoCafe;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -33,21 +37,21 @@ public class CafeTeste {
     @Test
     public void escolhaCafeCappuccino(){
         int val1 = 3;
-        CafeBuilder resultado = CappuccinoBuilder.getInstance();
+        FabricaCafe resultado = FabricaCafeCappuccino.getInstance();
         assertEquals(resultado, Cafeteria.escolhaCafe(val1));
     }
     
     @Test
     public void escolhaCafeExpresso(){
         int val1 = 1;
-        CafeBuilder resultado = CafeExpressoBuilder.getInstance();
+        FabricaCafe resultado = FabricaCafeExpresso.getInstance();
         assertEquals(resultado, Cafeteria.escolhaCafe(val1));
     }
     
     @Test
     public void escolhaCafeSemCafeina(){
         int val1 = 2;
-        CafeBuilder resultado = CafeSemCafeinaBuilder.getInstance();
+        FabricaCafe resultado = FabricaCafeSemCafeina.getInstance();
         assertEquals(resultado, Cafeteria.escolhaCafe(val1));
     }
    
@@ -119,6 +123,46 @@ public class CafeTeste {
         int val1 = 7;
         FabricaPromoCafe resultado = FabricaPromocoes.promoSabado();
         assertEquals(resultado, Cafeteria.escolheDiaPromo(val1));
+    }
+    
+    //testando somente para cappuccino
+    @Test
+    public void escolhaComplemento2(){
+        int val = 2;
+        FabricaCafe val2 = FabricaCafeCappuccino.getInstance(); 
+        assertEquals(val2, Cafeteria.escolhaComplemento(val, val2));
+    }
+    
+    @Test
+    public void escolhaChocolate(){
+        int val = 2;
+        FabricaCafe val2 = FabricaCafeCappuccino.getInstance(); 
+        Chocolate resultado = new Chocolate(val2);
+        assertEquals(resultado.getPreco(), Cafeteria.escolhaComplemento(val, val2).getPreco());
+    }
+    
+    @Test
+    public void escolhaChantili(){
+        int val = 2;
+        FabricaCafe val2 = FabricaCafeCappuccino.getInstance(); 
+        Chantili resultado = new Chantili(val2);
+        assertEquals(resultado.getPreco(), Cafeteria.escolhaComplemento(val, val2).getPreco());
+    }
+    
+    @Test
+    public void escolhaLicor(){
+        int val = 2;
+        FabricaCafe val2 = FabricaCafeCappuccino.getInstance(); 
+        Licor resultado = new Licor(val2);
+        assertEquals(resultado.getPreco(), Cafeteria.escolhaComplemento(val, val2).getPreco());
+    }
+    
+    @Test
+    public void escolhaCremeLaranja(){
+        int val = 2;
+        FabricaCafe val2 = FabricaCafeCappuccino.getInstance(); 
+        CremeLaranja resultado = new CremeLaranja(val2);
+        assertEquals(resultado.getPreco(), Cafeteria.escolhaComplemento(val, val2).getPreco());
     }
     
     @AfterClass

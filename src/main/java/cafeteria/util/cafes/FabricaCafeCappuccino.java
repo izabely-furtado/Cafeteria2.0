@@ -5,6 +5,7 @@
  */
 package cafeteria.util.cafes;
 
+import cafeteria.cdp.Chocolate;
 import cafeteria.cdp.*;
 
 /**

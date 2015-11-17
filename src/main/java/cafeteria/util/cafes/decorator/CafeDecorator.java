@@ -13,10 +13,11 @@ import cafeteria.util.cafes.FabricaCafe;
  */
 public abstract class CafeDecorator extends FabricaCafe{
     FabricaCafe umCafe;
+    
     public CafeDecorator(FabricaCafe cafe, float preco) {
         super(preco);
         this.umCafe = cafe;
-        this.setPreco(this.getPreco() + this.umCafe.getPreco());
+        this.setPreco(preco + this.umCafe.getPreco());
         
     }
     

@@ -5,10 +5,8 @@
  */
 package cafeteria.aplication;
 
-import cafeteria.util.*;
 import cafeteria.util.cafes.*;
 import cafeteria.util.cafes.decorator.*;
-import cafeteria.util.promocoes.FabricaPromoCafe;
 import java.util.Scanner;
 
 /**
@@ -28,16 +26,12 @@ public class Cafeteria {
                 FabricaCafe fc = Cafeteria.escolhaCafe(opcao);
                 opcao = Cafeteria.leDesejaComplemento();
                 while (opcao != 2){
-                        fc = Cafeteria.escolhaComplemento(opcao, fc);
+                        fc = Cafeteria.escolhaEscolherComplemento(opcao, fc);
                         opcao = Cafeteria.leDesejaComplemento();
                 }
                 System.out.println(fc.toString());
                 System.out.println("Preco R$ " + fc.getPreco());
                 
-            }
-            else{
-                opcao = Cafeteria.leOpcoesPromoSemana();
-                System.out.println(Cafeteria.escolheDiaPromo(opcao));
             }
             opcao = Cafeteria.leOpcoesMenu();
             escolhido = escolhaOpcoes(opcao);
@@ -102,30 +96,34 @@ public class Cafeteria {
         return opcao;
     }
     
-    public static FabricaCafe escolhaComplemento(int opcao, FabricaCafe fc){
+    public static FabricaCafe escolhaEscolherComplemento(int opcao, FabricaCafe fc){
         if(opcao == 1){
             int opcaoComplemento = Cafeteria.leOpcoesComplemento();
-            if(opcaoComplemento == 1){
-                return new Chocolate(fc);
-            }
-            else if (opcaoComplemento == 2){
-                return new CremeLaranja(fc);
-            }
-            else if (opcaoComplemento == 3){
-                return new Licor(fc);
-            }
-            else if (opcaoComplemento == 4){
-                return new Chantili(fc);
-            }
-            else{
-                throw new RuntimeException("Só um palpite: \n"
-                    + "dando tudo errado, grite. \n"
-                    + "Ulisses Tavares \n"
-                    + "(Escolha coisas possíveis)");
-            }
+            return Cafeteria.escolhaComplemento(opcaoComplemento, fc);
         }
         else{
             return fc;
+        }
+    }
+    
+    public static FabricaCafe escolhaComplemento(int opcaoComplemento, FabricaCafe fc){
+        if(opcaoComplemento == 1){
+            return new Chocolate(fc);
+        }
+        else if (opcaoComplemento == 2){
+            return new CremeLaranja(fc);
+        }
+        else if (opcaoComplemento == 3){
+            return new Licor(fc);
+        }
+        else if (opcaoComplemento == 4){
+            return new Chantili(fc);
+        }
+        else{
+            throw new RuntimeException("Só um palpite: \n"
+                    + "dando tudo errado, grite. \n"
+                    + "Ulisses Tavares \n"
+                    + "(Escolha coisas possíveis)");
         }
     }
     
@@ -169,35 +167,5 @@ public class Cafeteria {
                     + "(Escolha coisas possíveis)");
         }
     }
-    
-    public static FabricaPromoCafe escolheDiaPromo(int opcao){
-        if (opcao == 1) {
-            return FabricaPromocoes.promoDomingo();
-        } 
-        else if (opcao == 2) {
-            return FabricaPromocoes.promoSegunda();
-        }
-        else if (opcao == 3) {
-            return FabricaPromocoes.promoTerça();
-        }
-        else if (opcao == 4) {
-            return FabricaPromocoes.promoQuarta();
-        }
-        else if (opcao == 5) {
-            return FabricaPromocoes.promoQuinta();
-        }
-        else if (opcao == 6) {
-            return FabricaPromocoes.promoSexta();
-        }
-        else if (opcao == 7) {
-            return FabricaPromocoes.promoSabado();
-        }
-        else {
-            throw new RuntimeException("Só um palpite: \n" + 
-                                       "dando tudo errado, grite. \n"  +
-                                       "Ulisses Tavares \n" +
-                                       "(Dia da Semana Incorreto)");
-        }
-    }
-
 }
+    
